@@ -11,6 +11,7 @@ class _Login_pageState extends State<Login_page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: Center(
         child: Text("hello"),
       ),
