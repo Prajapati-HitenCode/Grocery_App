@@ -1,12 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:groceryapp/Pages/Home/Home_page.dart';
-import 'package:groceryapp/Pages/Login_page.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(const MyApp());
+    runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {

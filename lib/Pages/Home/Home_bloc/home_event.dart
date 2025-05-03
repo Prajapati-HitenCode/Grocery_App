@@ -9,4 +9,7 @@ final class HomeLoad_Success_event extends HomeEvent{}
 
 final class HomeLoading_event extends HomeEvent{}
 
-final class HomeLoadError_event extends HomeEvent{}
+final class HomeLoadError_event extends HomeEvent{
+  final String error;
+  HomeLoadError_event(this.error);
+}

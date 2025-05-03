@@ -3,14 +3,14 @@ part of 'home_bloc.dart';
 @immutable
 sealed class HomeState {}
 
-final class HomeActionstate extends HomeState{}
+abstract class HomeActionState extends HomeState{}
 
 final class HomeInitial extends HomeState {}
 
-final class HomeLoadSuccess_state extends HomeState{
-  final List<product_model> productList;
+final class HomeInitialState extends HomeState{}
 
-  HomeLoadSuccess_state({required this.productList});
+final class HomeLoadSuccess_state extends HomeState{
+
 }
 
 final class HomeLoading_state extends HomeState{}
