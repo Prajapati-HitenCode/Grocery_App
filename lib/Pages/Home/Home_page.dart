@@ -1,10 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloudinary_flutter/image/cld_image.dart';
+import 'package:cloudinary_url_gen/cloudinary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:groceryapp/Data/product_model.dart';
 import 'package:groceryapp/Pages/Home/Home_bloc/home_bloc.dart';
 
 class Home_page extends StatefulWidget {
+
   const Home_page({super.key});
 
   @override
@@ -13,7 +16,7 @@ class Home_page extends StatefulWidget {
 
 class _Home_pageState extends State<Home_page> {
   final HomeBloc homeBloc = HomeBloc();
-
+  Cloudinary cloudinary = Cloudinary.fromCloudName(cloudName: "dgiseihpt");
   @override
   void initState() {
     super.initState();
@@ -31,15 +34,13 @@ class _Home_pageState extends State<Home_page> {
     return Scaffold(
         appBar: AppBar(),
         body: BlocConsumer<HomeBloc, HomeState>(
-          bloc: homeBloc,
+            bloc: homeBloc,
             listener: (context, state) {},
             listenWhen: (previous, current) => current is HomeActionState,
             buildWhen: (previous, current) => current is! HomeActionState,
             builder: (context, state) {
-              if (state is HomeInitial) { // Change this line
-                return Loadingdata("Starting up..");
-              } else if (state is HomeLoading_state) {
-                return Loadingdata("Loading...");
+              if (state is HomeInitial || state is HomeLoading_state) {
+                return LoadingData(state is HomeLoading_state ? state.message : "Starting up...");
               } else if (state is HomeLoadSuccess_state) {
                 return ProductGrid();
               } else if (state is HomeLoadError_state) {
@@ -49,7 +50,6 @@ class _Home_pageState extends State<Home_page> {
                   ),
                 );
               } else {
-                // Handle any unexpected states
                 return Scaffold(
                   body: Center(
                     child: Text("Unexpected state: $state"),
@@ -59,7 +59,7 @@ class _Home_pageState extends State<Home_page> {
             }));
   }
 
-  Widget Loadingdata(String message) {
+  Widget LoadingData(String message) {
     return Scaffold(
       body: Center(
         child: Column(
@@ -112,11 +112,8 @@ class _Home_pageState extends State<Home_page> {
                         borderRadius: const BorderRadius.vertical(
                             top: Radius.circular(10)),
                         child: product.image.isNotEmpty
-                            ? Center(
-                                child: Text(
-                                  product.image,
-                                ),
-                              )
+                            ? CldImageWidget(publicId: product.image)
+                        //https://collection.cloudinary.com/dgiseihpt/38c36e0b3ceb0ca684f819a9aa6b52ee
                             : Container(
                                 color: Colors.grey[300],
                                 child: const Icon(

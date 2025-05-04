@@ -13,7 +13,15 @@ final class HomeLoadSuccess_state extends HomeState{
 
 }
 
-final class HomeLoading_state extends HomeState{}
+final class HomeLoading_state extends HomeState{
+  final String message;
+
+  HomeLoading_state({required this.message});
+
+}
+
+
+
 
 final class HomeLoadError_state extends HomeState{
   final String error;
