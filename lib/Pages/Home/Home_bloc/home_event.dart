@@ -13,3 +13,5 @@ final class HomeLoadError_event extends HomeEvent{
   final String error;
   HomeLoadError_event(this.error);
 }
+
+final class ProductFilter_Event extends HomeEvent{}

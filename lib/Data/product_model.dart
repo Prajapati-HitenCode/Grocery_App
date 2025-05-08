@@ -11,7 +11,7 @@ class product_model
    factory product_model.fromMap(Map<String, dynamic> map) {
      return product_model(
        name: map['name'] ?? '',
-       price: map['Price'] ?? 0,
+       price: map['price'] ?? 0,
        image: map['image'] ?? 'image not found',
      );
    }
@@ -22,8 +22,8 @@ class product_model
       final Data=doc.data() as Map<String,dynamic>;
       return product_model(
           name: Data['name'],
-          price: (Data['Price'] is int) ? Data['Price'] : int.tryParse(
-          Data['Price'].toString()) ?? 0,
+          price: (Data['price'] is int) ? Data['price'] : int.tryParse(
+          Data['price'].toString()) ?? 0,
           image: Data['imageurl']);
     }
     catch(e)

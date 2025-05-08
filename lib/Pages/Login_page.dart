@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:groceryapp/Pages/Home/Home_page.dart';
 
 class Login_page extends StatefulWidget {
   const Login_page({super.key});
@@ -31,6 +30,13 @@ class _Login_pageState extends State<Login_page> {
     passController.dispose();
   }
 
+  changeVisibility()
+  {
+    setState(() {
+      _isHidden=!_isHidden;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,12 +44,6 @@ class _Login_pageState extends State<Login_page> {
       ),
       body:loginScreen(),
     );
-  }
-  changeVisibility()
-  {
-    setState(() {
-      _isHidden=!_isHidden;
-    });
   }
 
   Widget loginScreen() {
@@ -105,14 +105,14 @@ class _Login_pageState extends State<Login_page> {
                     )
                 ),
               ),
-              TextButton(
-                  style: ButtonStyle(
-                    minimumSize: WidgetStatePropertyAll<Size>(Size(150, 50)),
-                    backgroundColor: WidgetStatePropertyAll<Color>(Colors.blueAccent),
-                  ),
-                  onPressed: () => MaterialPageRoute(builder: (context) => Home_page()),
-                  child: Text('Login',style: TextStyle(color: Colors.black,fontSize: 20.0),)
-              ),
+              // TextButton(
+              //     style: ButtonStyle(
+              //       minimumSize: WidgetStatePropertyAll<Size>(Size(150, 50)),
+              //       backgroundColor: WidgetStatePropertyAll<Color>(Colors.blueAccent),
+              //     ),
+              //     onPressed: () => MaterialPageRoute(builder: (context) => Home_page()),
+              //     child: Text('Login',style: TextStyle(color: Colors.black,fontSize: 20.0),)
+              // ),
             ],
           ),
           SizedBox(height: 150)

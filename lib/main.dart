@@ -1,8 +1,11 @@
+import 'package:cloudinary_flutter/cloudinary_context.dart';
+import 'package:cloudinary_url_gen/cloudinary.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:groceryapp/Pages/Home/Home_page.dart';
 
 void main() async{
+  CloudinaryContext.cloudinary=Cloudinary.fromCloudName(cloudName: "dgiseihpt");
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
     runApp(MyApp());
@@ -19,7 +22,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:Home_page() ,
+      home:HomePage() ,
     );
   }
 }
