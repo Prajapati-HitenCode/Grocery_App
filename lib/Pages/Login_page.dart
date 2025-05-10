@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:groceryapp/Pages/Bottom_page.dart';
 
 class Login_page extends StatefulWidget {
   const Login_page({super.key});
@@ -19,7 +20,7 @@ class _Login_pageState extends State<Login_page> {
     super.initState();
     emailController.text='';
     passController.text='';
-    _isHidden=false;
+    _isHidden=true;
   }
 
   @override
@@ -48,13 +49,13 @@ class _Login_pageState extends State<Login_page> {
 
   Widget loginScreen() {
     return SingleChildScrollView(
-      child: Column(
+      child:Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           ClipOval(
             child: Container(
-              color: Colors.blue,
+              color: Colors.green,
               child: Icon(
                 Icons.person,
                 size: 130,
@@ -62,14 +63,14 @@ class _Login_pageState extends State<Login_page> {
               ),
             ),
           ),
-          Text('Login',style: GoogleFonts.satisfy(textStyle: TextStyle(fontSize: 60.0),)),
-          SizedBox(height: 70),
+          Text('Login',style: GoogleFonts.alfaSlabOne(textStyle: TextStyle(fontSize: 60.0),)),
+          SizedBox(height: 20),
           Column(
             children: [
               Container(
-                margin: EdgeInsets.only(right: 50.0,left: 50.0,bottom: 20.0),
+                margin: EdgeInsets.only(right: 20.0,left: 20.0,bottom: 20.0),
                 decoration: BoxDecoration(
-                    color: Colors.grey[400],
+                    color: Colors.white,
                     border: Border.all(width: 1,color: Colors.black),
                     borderRadius: BorderRadius.all(Radius.circular(20.0))),
                 padding: EdgeInsets.symmetric(horizontal: 20.0),
@@ -84,9 +85,9 @@ class _Login_pageState extends State<Login_page> {
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(right: 50.0,left: 50.0,bottom: 20.0),
+                margin: EdgeInsets.only(right: 20.0,left: 20.0,bottom: 20.0),
                 decoration: BoxDecoration(
-                    color: Colors.grey[400],
+                    color: Colors.white,
                     border: Border.all(width: 1,color: Colors.black),
                     borderRadius: BorderRadius.all(Radius.circular(20.0))),
                 padding: EdgeInsets.symmetric(horizontal: 20.0),
@@ -97,7 +98,6 @@ class _Login_pageState extends State<Login_page> {
                         icon: Icon(Icons.lock),
                         hintText: 'Enter Password',
                         contentPadding: EdgeInsets.symmetric(vertical: 15.0),
-                        filled: true,
                         suffixIcon: IconButton(onPressed: changeVisibility,
                             icon: Icon( _isHidden? Icons.visibility_off : Icons.visibility)),
                         fillColor: Colors.grey[400],
@@ -105,14 +105,19 @@ class _Login_pageState extends State<Login_page> {
                     )
                 ),
               ),
-              // TextButton(
-              //     style: ButtonStyle(
-              //       minimumSize: WidgetStatePropertyAll<Size>(Size(150, 50)),
-              //       backgroundColor: WidgetStatePropertyAll<Color>(Colors.blueAccent),
-              //     ),
-              //     onPressed: () => MaterialPageRoute(builder: (context) => Home_page()),
-              //     child: Text('Login',style: TextStyle(color: Colors.black,fontSize: 20.0),)
-              // ),
+              TextButton(
+                  style: ButtonStyle(
+                    minimumSize: WidgetStatePropertyAll<Size>(Size(150, 50)),
+                    backgroundColor: WidgetStatePropertyAll<Color>(Colors.green),
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => BottomPage()),
+                    );
+                  },
+                  child: Text('Login',style: TextStyle(color: Colors.black,fontSize: 20.0),)
+              ),
             ],
           ),
           SizedBox(height: 150)

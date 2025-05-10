@@ -49,16 +49,15 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
       body: BlocConsumer<HomeBloc, HomeState>(
         bloc: homeBloc,
         listener: (context, state) {},
         listenWhen: (previous,current)=> current is HomeActionState,
         buildWhen: (previous, current) => current is! HomeActionState,
         builder: (context, state) {
-          if (state is HomeInitial || state is HomeLoading_state) {
-            return LoadingData(state is HomeLoading_state ? state.message : "Starting up...");
-          } else if (state is HomeLoadSuccess_state) {
+          if (state is HomeInitial || state is HomeLoadingState) {
+            return LoadingData(state is HomeLoadingState ? state.message : "Starting up...");
+          } else if (state is HomeSuccessState) {
             if (productList != state.productList) {
               productList = state.productList;
               if (searchController.text.isEmpty) {
@@ -68,8 +67,10 @@ class _HomePageState extends State<HomePage> {
               }
             } // Initialize filteredList
             return ProductGrid(filteredList, searchController);
-          } else if (state is HomeLoadError_state) {
-            return ErrorState(state.error);
+          } else if (state is HomeLoadErrorState) {
+            return Center(
+              child: Text("Error: ${state.error}"),
+            );
           } else {
             return Center(child: Text("Unexpected state: $state"));
           }
@@ -84,12 +85,6 @@ class _HomePageState extends State<HomePage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [CircularProgressIndicator(), Text(message)],
       ),
-    );
-  }
-
-  Widget ErrorState(String error) {
-    return Center(
-      child: Text("Error: $error"),
     );
   }
 

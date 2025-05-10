@@ -2,7 +2,7 @@ import 'package:cloudinary_flutter/cloudinary_context.dart';
 import 'package:cloudinary_url_gen/cloudinary.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:groceryapp/Pages/Home/Home_page.dart';
+import 'package:groceryapp/Pages/Login_page.dart';
 
 void main() async{
   CloudinaryContext.cloudinary=Cloudinary.fromCloudName(cloudName: "dgiseihpt");
@@ -18,11 +18,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:HomePage() ,
+      home:Login_page() ,
     );
   }
 }

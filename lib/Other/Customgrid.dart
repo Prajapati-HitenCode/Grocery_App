@@ -76,13 +76,15 @@ class CustomGrid extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 Padding(
-                  padding: EdgeInsets.only(left: 10,right: 10),
+                  padding: EdgeInsets.only(left: 10, right: 10),
                   child: TextButton(
                       style: TextButton.styleFrom(
                         foregroundColor: Colors.white,
                         backgroundColor: Colors.green,
-                        padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 20.0), // Adjust padding
-                        textStyle: const TextStyle(fontSize: 15), // Change font size
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 12.0, horizontal: 20.0), // Adjust padding
+                        textStyle:
+                            const TextStyle(fontSize: 15), // Change font size
                       ),
                       onPressed: () {},
                       child: Text("Add to Cart")),
