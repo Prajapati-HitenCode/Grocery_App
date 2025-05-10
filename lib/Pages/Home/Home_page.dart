@@ -52,11 +52,12 @@ class _HomePageState extends State<HomePage> {
       body: BlocConsumer<HomeBloc, HomeState>(
         bloc: homeBloc,
         listener: (context, state) {},
-        listenWhen: (previous,current)=> current is HomeActionState,
+        listenWhen: (previous, current) => current is HomeActionState,
         buildWhen: (previous, current) => current is! HomeActionState,
         builder: (context, state) {
           if (state is HomeInitial || state is HomeLoadingState) {
-            return LoadingData(state is HomeLoadingState ? state.message : "Starting up...");
+            return LoadingData(
+                state is HomeLoadingState ? state.message : "Starting up...");
           } else if (state is HomeSuccessState) {
             if (productList != state.productList) {
               productList = state.productList;
@@ -88,12 +89,14 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget ProductGrid(List<product_model> filteredList, TextEditingController controller) {
+  Widget ProductGrid(
+      List<product_model> filteredList, TextEditingController controller) {
     return SafeArea(
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
             child: TextField(
               controller: controller,
               decoration: const InputDecoration(
