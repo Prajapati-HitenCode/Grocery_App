@@ -2,9 +2,8 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:groceryapp/Data/product_model.dart';
+import 'package:groceryapp/Data/models/product_model.dart';
 
 part 'home_event.dart';
 part 'home_state.dart';
@@ -25,19 +24,11 @@ FutureOr<void> homeInitialEvent(
     await Future.delayed(Duration(seconds: 3)); // Simulate app loading
     debugPrint("Loading finished");
 
-    // Fetch data from Firestore here
-    // emit(HomeLoading_state(message: "Loading products...")); // Update message for data loading
-    // await Future.delayed(Duration(seconds: 3)); // Simulate data loading delay
-
-    QuerySnapshot snapshot =
-        await FirebaseFirestore.instance.collection('product').get();
-
     // Convert the fetched documents to a list of product_model
-    List<product_model> productList =
-        snapshot.docs.map((doc) => product_model.fromDocument(doc)).toList();
+    List<product_model> productList = await fetchProducts();
 
     // Emit the success state with the fetched product list
-    emit(HomeSuccessState(productList: productList));
+    emit(HomeSuccessState(ProductList: productList));
   } catch (e) {
     debugPrint("Error occurred: $e");
     emit(HomeLoadErrorState(error: e.toString()));

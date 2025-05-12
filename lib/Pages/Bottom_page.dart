@@ -35,7 +35,7 @@ class _BottomPageState extends State<BottomPage> {
     }
     return Scaffold(
       appBar: AppBar(
-        title: Text('Lima'),
+        title: Text('Home'),
         backgroundColor: Colors.white,
         leading: IconButton(
           onPressed: () => Navigator.pushReplacement(

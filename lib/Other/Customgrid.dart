@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:groceryapp/Data/product_model.dart';
+import 'package:groceryapp/Data/models/product_model.dart';
 
 class CustomGrid extends StatelessWidget {
   final List<product_model> productList;

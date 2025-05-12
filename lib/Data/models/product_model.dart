@@ -19,18 +19,26 @@ class product_model
   {
     try
     {
-      final Data=doc.data() as Map<String,dynamic>;
+      final data=doc.data() as Map<String,dynamic>;
       return product_model(
-          name: Data['name'],
-          price: (Data['price'] is int) ? Data['price'] : int.tryParse(
-          Data['price'].toString()) ?? 0,
-          image: Data['imageurl']);
+          name: data['name'],
+          price: (data['price'] is int) ? data['price'] : int.tryParse(
+          data['price'].toString()) ?? 0,
+          image: data['imageurl']);
     }
     catch(e)
     {
       throw Exception("error while fetching data:- $e");
     }
   }
+}
+
+Future<List<product_model>> fetchProducts() async {
+  QuerySnapshot snapshot =
+  await FirebaseFirestore.instance.collection('product').get();
+
+  // Convert the fetched documents to a list of product_model
+  return snapshot.docs.map((doc) => product_model.fromDocument(doc)).toList();
 }
 
 

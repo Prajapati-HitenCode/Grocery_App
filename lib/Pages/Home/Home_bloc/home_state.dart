@@ -10,9 +10,9 @@ final class HomeInitial extends HomeState {}
 final class HomeInitialState extends HomeState {}
 
 final class HomeSuccessState extends HomeState {
-  final List<product_model> productList;
+  final List<product_model> ProductList;
 
-  HomeSuccessState({required this.productList});
+  HomeSuccessState({required this.ProductList});
 }
 
 final class HomeLoadingState extends HomeState {

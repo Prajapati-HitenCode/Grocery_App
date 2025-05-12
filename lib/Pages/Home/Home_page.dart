@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:groceryapp/Data/product_model.dart';
+import 'package:groceryapp/Data/models/product_model.dart';
 import 'package:groceryapp/Other/Customgrid.dart';
 import 'package:groceryapp/Pages/Home/Home_bloc/home_bloc.dart';
 
@@ -59,8 +59,8 @@ class _HomePageState extends State<HomePage> {
             return LoadingData(
                 state is HomeLoadingState ? state.message : "Starting up...");
           } else if (state is HomeSuccessState) {
-            if (productList != state.productList) {
-              productList = state.productList;
+            if (productList != state.ProductList) {
+              productList = state.ProductList;
               if (searchController.text.isEmpty) {
                 filteredList = List.from(productList);
               } else {
@@ -79,38 +79,25 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+}
+Widget ProductGrid(
+    List<product_model> filteredList, TextEditingController controller) {
+  return SafeArea(
+    child: Column(
+      children: [
+        Expanded(
+          child: CustomGrid(productList: filteredList),
+        ),
+      ],
+    ),
+  );
+}
 
-  Widget LoadingData(String message) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [CircularProgressIndicator(), Text(message)],
-      ),
-    );
-  }
-
-  Widget ProductGrid(
-      List<product_model> filteredList, TextEditingController controller) {
-    return SafeArea(
-      child: Column(
-        children: [
-          Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
-            child: TextField(
-              controller: controller,
-              decoration: const InputDecoration(
-                hintText: 'Search by name...',
-                prefixIcon: Icon(Icons.search),
-                border: OutlineInputBorder(),
-              ),
-            ),
-          ),
-          Expanded(
-            child: CustomGrid(productList: filteredList),
-          ),
-        ],
-      ),
-    );
-  }
+Widget LoadingData(String message) {
+  return Center(
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [CircularProgressIndicator(), Text(message)],
+    ),
+  );
 }
